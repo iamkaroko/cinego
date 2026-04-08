@@ -1,6 +1,7 @@
 package booking
 
 import (
+	"context"
 	"errors"
 	"time"
 )
@@ -23,4 +24,6 @@ type Booking struct {
 type BookingRepository interface {
 	Book(b Booking) (Booking, error)
 	ListByMovieID(movieID string) []Booking
+	Confirm(ctx context.Context, sessionID string, userID string) (Booking, error)
+	Release(ctx context.Context, sessionID string, userID string) error
 }

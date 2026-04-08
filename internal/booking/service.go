@@ -8,6 +8,10 @@ func NewService(repo BookingRepository) *Service {
 	return &Service{repo}
 }
 
-func (s *Service) Book(booking Booking) error {
-	return s.repo.Book(&booking)
+func (s *Service) Book(b Booking) (Booking, error) {
+	return s.repo.Book(b)
+}
+
+func (s *Service) ListBookings(movieID string) []Booking {
+	return s.repo.ListByMovieID(movieID)
 }
